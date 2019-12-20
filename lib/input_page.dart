@@ -1,7 +1,11 @@
 import 'package:bmi_calculator/raven_theme_data.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:bmi_calculator/custom_card_column.dart';
+import 'package:bmi_calculator/custom_card_container.dart';
+
+const Color kInactiveBorderColor = Color(0xE6292A58);
+const Color kActiveBorderColor = Color(0xFF825FFE);
 
 class InputPage extends StatefulWidget {
   @override
@@ -10,12 +14,42 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   final RavenTheme _ravenTheme = RavenTheme();
+  Color maleBorderColor = kInactiveBorderColor;
+  Color femaleBorderColor = kInactiveBorderColor;
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  void updateCardColor(int gender) {
+    if (gender == 1) {
+      if (maleBorderColor == kInactiveBorderColor) {
+        maleBorderColor = kActiveBorderColor;
+        femaleBorderColor = kInactiveBorderColor;
+      } else {
+        maleBorderColor = kInactiveBorderColor;
+      }
+    } else if (gender == 2) {
+      if (femaleBorderColor == kInactiveBorderColor) {
+        femaleBorderColor = kActiveBorderColor;
+        maleBorderColor = kInactiveBorderColor;
+      } else {
+        femaleBorderColor = kInactiveBorderColor;
+      }
+    } else {
+      maleBorderColor = kInactiveBorderColor;
+      femaleBorderColor = kInactiveBorderColor;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BMI CALCULATOR'),
+        title: const Text('DAMN RIGHT! CALCULATOR'),
       ),
       body: Center(
         child: Container(
@@ -26,22 +60,38 @@ class _InputPageState extends State<InputPage> {
                 child: Row(
                   children: <Widget>[
                     Expanded(
-                      child: CustomCardContainer(
-                        colorValue: _ravenTheme.matteBlue,
-                        cardChild: CustomCardChildColumn(
-                          customIcon: FontAwesomeIcons.mars,
-                          customText: 'Male',
-                          ravenTheme: _ravenTheme,
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            updateCardColor(1);
+                          });
+                        },
+                        child: CustomCardContainer(
+                          color: _ravenTheme.matteBlue,
+                          borderColor: maleBorderColor,
+                          child: CustomCardColumn(
+                            icon: FontAwesomeIcons.mars,
+                            text: 'Male',
+                            ravenTheme: _ravenTheme,
+                          ),
                         ),
                       ),
                     ),
                     Expanded(
-                      child: CustomCardContainer(
-                        colorValue: _ravenTheme.matteBlue,
-                        cardChild: CustomCardChildColumn(
-                          customIcon: FontAwesomeIcons.venus,
-                          customText: 'Female',
-                          ravenTheme: _ravenTheme,
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            updateCardColor(2);
+                          });
+                        },
+                        child: CustomCardContainer(
+                          color: _ravenTheme.matteBlue,
+                          borderColor: femaleBorderColor,
+                          child: CustomCardColumn(
+                            icon: FontAwesomeIcons.venus,
+                            text: 'Female',
+                            ravenTheme: _ravenTheme,
+                          ),
                         ),
                       ),
                     ),
@@ -53,7 +103,8 @@ class _InputPageState extends State<InputPage> {
                   children: <Widget>[
                     Expanded(
                       child: CustomCardContainer(
-                        colorValue: _ravenTheme.matteBlue,
+                        color: _ravenTheme.matteBlue,
+                        borderColor: _ravenTheme.matteBlue,
                       ),
                     ),
                   ],
@@ -64,12 +115,14 @@ class _InputPageState extends State<InputPage> {
                   children: <Widget>[
                     Expanded(
                       child: CustomCardContainer(
-                        colorValue: _ravenTheme.matteBlue,
+                        color: _ravenTheme.matteBlue,
+                        borderColor: _ravenTheme.matteBlue,
                       ),
                     ),
                     Expanded(
                       child: CustomCardContainer(
-                        colorValue: _ravenTheme.matteBlue,
+                        color: _ravenTheme.matteBlue,
+                        borderColor: _ravenTheme.matteBlue,
                       ),
                     ),
                   ],
@@ -79,66 +132,26 @@ class _InputPageState extends State<InputPage> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class CustomCardChildColumn extends StatelessWidget {
-  final IconData customIcon;
-  final String customText;
-  final RavenTheme _ravenTheme;
-
-  const CustomCardChildColumn({
-    Key key,
-    RavenTheme ravenTheme,
-    @required this.customIcon,
-    @required this.customText,
-  })  : _ravenTheme = ravenTheme,
-        super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Icon(
-          customIcon,
-          size: 100.0,
-          color: _ravenTheme.purple,
-        ),
-        SizedBox(
-          height: 15.0,
-        ),
-        Text(
-          customText,
-          style: TextStyle(
-            color: _ravenTheme.offWhite,
-            fontSize: 30.0,
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: _ravenTheme.matteBlue,
+        unselectedItemColor: _ravenTheme.purple,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Home'),
           ),
-        )
-      ],
-    );
-  }
-}
-
-// Custom Widget:
-class CustomCardContainer extends StatelessWidget {
-  final Color colorValue;
-  final Widget cardChild;
-
-  const CustomCardContainer({Key key, @required this.colorValue, this.cardChild}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: cardChild,
-      margin: EdgeInsets.all(15.0),
-      padding: EdgeInsets.all(20.0),
-      decoration: BoxDecoration(
-        color: colorValue,
-        borderRadius: BorderRadius.all(
-          Radius.circular(5.0),
-        ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business),
+            title: Text('Business'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            title: Text('School'),
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: _ravenTheme.offWhite,
+        onTap: _onItemTapped,
       ),
     );
   }
