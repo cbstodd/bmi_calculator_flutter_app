@@ -23,7 +23,7 @@ class CustomCardContainer extends StatelessWidget {
         borderRadius: BorderRadius.all(
           Radius.circular(5.0),
         ),
-        border: Border.all(color: borderColor, width: 1.0),
+        border: Border.all(color: borderColor, width: 2.0),
       ),
     );
   }

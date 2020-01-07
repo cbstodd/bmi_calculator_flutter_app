@@ -1,11 +1,9 @@
 import 'package:bmi_calculator/raven_theme_data.dart';
+import 'package:bmi_calculator/selected_gender.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/custom_card_column.dart';
 import 'package:bmi_calculator/custom_card_container.dart';
-
-const Color kInactiveBorderColor = Color(0xE6292A58);
-const Color kActiveBorderColor = Color(0xFF825FFE);
 
 class InputPage extends StatefulWidget {
   @override
@@ -14,35 +12,14 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   final RavenTheme _ravenTheme = RavenTheme();
-  Color maleBorderColor = kInactiveBorderColor;
-  Color femaleBorderColor = kInactiveBorderColor;
+  final SelectedGender _gender = SelectedGender();
+
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
-  }
-
-  void updateCardColor(int gender) {
-    if (gender == 1) {
-      if (maleBorderColor == kInactiveBorderColor) {
-        maleBorderColor = kActiveBorderColor;
-        femaleBorderColor = kInactiveBorderColor;
-      } else {
-        maleBorderColor = kInactiveBorderColor;
-      }
-    } else if (gender == 2) {
-      if (femaleBorderColor == kInactiveBorderColor) {
-        femaleBorderColor = kActiveBorderColor;
-        maleBorderColor = kInactiveBorderColor;
-      } else {
-        femaleBorderColor = kInactiveBorderColor;
-      }
-    } else {
-      maleBorderColor = kInactiveBorderColor;
-      femaleBorderColor = kInactiveBorderColor;
-    }
   }
 
   @override
@@ -63,12 +40,12 @@ class _InputPageState extends State<InputPage> {
                       child: GestureDetector(
                         onTap: () {
                           setState(() {
-                            updateCardColor(1);
+                            _gender.maleSelected();
                           });
                         },
                         child: CustomCardContainer(
                           color: _ravenTheme.matteBlue,
-                          borderColor: maleBorderColor,
+                          borderColor: _gender.isMaleColor(),
                           child: CustomCardColumn(
                             icon: FontAwesomeIcons.mars,
                             text: 'Male',
@@ -81,12 +58,12 @@ class _InputPageState extends State<InputPage> {
                       child: GestureDetector(
                         onTap: () {
                           setState(() {
-                            updateCardColor(2);
+                            _gender.femaleSelected();
                           });
                         },
                         child: CustomCardContainer(
                           color: _ravenTheme.matteBlue,
-                          borderColor: femaleBorderColor,
+                          borderColor: _gender.isFemaleColor(),
                           child: CustomCardColumn(
                             icon: FontAwesomeIcons.venus,
                             text: 'Female',
