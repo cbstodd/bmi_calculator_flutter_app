@@ -17,58 +17,29 @@ const Color kWarning = Color(0xFFFFAB8B);
 const Color kSuccess = Color(0xFF0CCDC9);
 const Color kInfo = Color(0xFF4B81EB);
 
-const kfiraFontFamily30 = TextStyle(
-  fontFamily: 'Fira_Sans',
+const TextStyle kRobotoFontFamily50 = TextStyle(
+  fontFamily: 'Roboto',
   color: kOffWhite,
-  fontSize: 30.0,
+  fontSize: 50.0,
+  fontWeight: FontWeight.w900,
 );
 
-const kfiraFontFamily20 = TextStyle(
-  fontFamily: 'Fira_Sans',
-  color: kOffWhite,
-  fontSize: 20.0,
-);
-
-const kRobotoFontFamily30 = TextStyle(
+const TextStyle kRobotoFontFamily30 = TextStyle(
   fontFamily: 'Roboto',
   color: kOffWhite,
   fontSize: 30.0,
 );
 
-const kRobotoFontFamily20 = TextStyle(
+const TextStyle kRobotoFontFamily20 = TextStyle(
   fontFamily: 'Roboto',
   color: kOffWhite,
   fontSize: 20.0,
 );
 
-const kRobotoFontFamily14 = TextStyle(
+const TextStyle kRobotoFontFamily14 = TextStyle(
   fontFamily: 'Roboto',
   color: kOffWhite,
   fontSize: 14.0,
-);
-
-const kNunitoFontFamily30 = TextStyle(
-  fontFamily: 'Nunito_Sans',
-  color: kOffWhite,
-  fontSize: 30.0,
-);
-
-const kNunitoFontFamily20 = TextStyle(
-  fontFamily: 'Nunito_Sans',
-  color: kOffWhite,
-  fontSize: 20.0,
-);
-
-const kVarelaFontFamily30 = TextStyle(
-  fontFamily: 'Varela_Round',
-  color: kOffWhite,
-  fontSize: 30.0,
-);
-
-const kVarelaFontFamily20 = TextStyle(
-  fontFamily: 'Varela_Round',
-  color: kOffWhite,
-  fontSize: 20.0,
 );
 
 BoxDecoration linearGradientBackground() {

@@ -2,7 +2,7 @@ import 'package:bmi_calculator/raven_theme_data.dart';
 import 'package:bmi_calculator/selected_gender.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:bmi_calculator/custom_card_column.dart';
+import 'package:bmi_calculator/gender_card_info_column.dart';
 import 'package:bmi_calculator/custom_card_container.dart';
 
 class InputPage extends StatefulWidget {
@@ -14,6 +14,7 @@ class _InputPageState extends State<InputPage> {
   static final SelectedGender _gender = SelectedGender();
 
   int _selectedIndex = 0;
+  double height = 10.0;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -48,7 +49,7 @@ class _InputPageState extends State<InputPage> {
                         child: CustomCardContainer(
                           color: kMatteBlue,
                           borderColor: _gender.isMaleColor(),
-                          child: CustomCardColumn(
+                          child: GenderCardInfoColumn(
                             icon: FontAwesomeIcons.mars,
                             text: 'Male',
                           ),
@@ -65,7 +66,7 @@ class _InputPageState extends State<InputPage> {
                         child: CustomCardContainer(
                           color: kMatteBlue,
                           borderColor: _gender.isFemaleColor(),
-                          child: CustomCardColumn(
+                          child: GenderCardInfoColumn(
                             icon: FontAwesomeIcons.venus,
                             text: 'Female',
                           ),
@@ -76,12 +77,57 @@ class _InputPageState extends State<InputPage> {
                 ),
               ),
               Expanded(
-                child: Row(
+                child: Column(
                   children: <Widget>[
                     Expanded(
                       child: CustomCardContainer(
                         color: kMatteBlue,
                         borderColor: kMatteBlue,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  "Height",
+                                  style: kRobotoFontFamily30,
+                                )
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  '${height.round()}',
+                                  style: kRobotoFontFamily50,
+                                ),
+                                SizedBox(width: 10.0),
+                                Text(
+                                  "in",
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontFamily: 'Roboto',
+                                    color: kPinkPurple,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Slider(
+                              value: height,
+                              min: 10.0,
+                              max: 180.0,
+                              activeColor: kPurple,
+                              inactiveColor: kOffWhite,
+                              onChanged: (double newValue) {
+                                setState(() {
+                                  height = newValue.roundToDouble();
+                                  print(height);
+                                });
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],

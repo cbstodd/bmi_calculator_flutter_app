@@ -1,8 +1,8 @@
 import 'package:bmi_calculator/raven_theme_data.dart';
 import 'package:flutter/material.dart';
 
-class CustomCardColumn extends StatelessWidget {
-  const CustomCardColumn({
+class GenderCardInfoColumn extends StatelessWidget {
+  const GenderCardInfoColumn({
     Key key,
     @required this.icon,
     @required this.text,
