@@ -4,13 +4,10 @@ import 'package:flutter/material.dart';
 class CustomCardColumn extends StatelessWidget {
   const CustomCardColumn({
     Key key,
-    RavenTheme ravenTheme,
     @required this.icon,
     @required this.text,
-  })  : _ravenTheme = ravenTheme,
-        super(key: key);
+  }) : super(key: key);
 
-  final RavenTheme _ravenTheme;
   final IconData icon;
   final String text;
 
@@ -22,17 +19,14 @@ class CustomCardColumn extends StatelessWidget {
         Icon(
           icon,
           size: 100.0,
-          color: _ravenTheme.purple,
+          color: kPurple,
         ),
         SizedBox(
           height: 15.0,
         ),
         Text(
           text,
-          style: TextStyle(
-            color: _ravenTheme.offWhite,
-            fontSize: 30.0,
-          ),
+          style: kRobotoFontFamily30,
         )
       ],
     );

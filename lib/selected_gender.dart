@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 
 enum Gender { Male, Female }
 
-final RavenTheme _ravenTheme = RavenTheme();
-
 class SelectedGender {
   Gender selectedGender;
 
@@ -17,10 +15,10 @@ class SelectedGender {
   }
 
   Color isMaleColor() {
-    return selectedGender == Gender.Male ? _ravenTheme.purple : _ravenTheme.matteBlue;
+    return selectedGender == Gender.Male ? kPurple : kMatteBlue;
   }
 
   Color isFemaleColor() {
-    return selectedGender == Gender.Female ? _ravenTheme.purple : _ravenTheme.matteBlue;
+    return selectedGender == Gender.Female ? kPurple : kMatteBlue;
   }
 }

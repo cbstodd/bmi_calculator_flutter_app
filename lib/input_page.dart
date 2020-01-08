@@ -11,8 +11,7 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  final RavenTheme _ravenTheme = RavenTheme();
-  final SelectedGender _gender = SelectedGender();
+  static final SelectedGender _gender = SelectedGender();
 
   int _selectedIndex = 0;
 
@@ -26,11 +25,14 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('DAMN RIGHT! CALCULATOR'),
+        title: const Text(
+          'DAMN RIGHT! CALCULATOR',
+          style: kRobotoFontFamily20,
+        ),
       ),
       body: Center(
         child: Container(
-          decoration: _ravenTheme.linearGradientBackground(),
+          decoration: linearGradientBackground(),
           child: Column(
             children: <Widget>[
               Expanded(
@@ -44,12 +46,11 @@ class _InputPageState extends State<InputPage> {
                           });
                         },
                         child: CustomCardContainer(
-                          color: _ravenTheme.matteBlue,
+                          color: kMatteBlue,
                           borderColor: _gender.isMaleColor(),
                           child: CustomCardColumn(
                             icon: FontAwesomeIcons.mars,
                             text: 'Male',
-                            ravenTheme: _ravenTheme,
                           ),
                         ),
                       ),
@@ -62,12 +63,11 @@ class _InputPageState extends State<InputPage> {
                           });
                         },
                         child: CustomCardContainer(
-                          color: _ravenTheme.matteBlue,
+                          color: kMatteBlue,
                           borderColor: _gender.isFemaleColor(),
                           child: CustomCardColumn(
                             icon: FontAwesomeIcons.venus,
                             text: 'Female',
-                            ravenTheme: _ravenTheme,
                           ),
                         ),
                       ),
@@ -80,8 +80,8 @@ class _InputPageState extends State<InputPage> {
                   children: <Widget>[
                     Expanded(
                       child: CustomCardContainer(
-                        color: _ravenTheme.matteBlue,
-                        borderColor: _ravenTheme.matteBlue,
+                        color: kMatteBlue,
+                        borderColor: kMatteBlue,
                       ),
                     ),
                   ],
@@ -92,14 +92,14 @@ class _InputPageState extends State<InputPage> {
                   children: <Widget>[
                     Expanded(
                       child: CustomCardContainer(
-                        color: _ravenTheme.matteBlue,
-                        borderColor: _ravenTheme.matteBlue,
+                        color: kMatteBlue,
+                        borderColor: kMatteBlue,
                       ),
                     ),
                     Expanded(
                       child: CustomCardContainer(
-                        color: _ravenTheme.matteBlue,
-                        borderColor: _ravenTheme.matteBlue,
+                        color: kMatteBlue,
+                        borderColor: kMatteBlue,
                       ),
                     ),
                   ],
@@ -110,24 +110,33 @@ class _InputPageState extends State<InputPage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: _ravenTheme.matteBlue,
-        unselectedItemColor: _ravenTheme.purple,
+        backgroundColor: kMatteBlue,
+        unselectedItemColor: kPurple,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('Home'),
+            title: Text(
+              'Home',
+              style: kRobotoFontFamily14,
+            ),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.business),
-            title: Text('Business'),
+            title: Text(
+              'Business',
+              style: kRobotoFontFamily14,
+            ),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
-            title: Text('School'),
+            title: Text(
+              'School',
+              style: kRobotoFontFamily14,
+            ),
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: _ravenTheme.offWhite,
+        selectedItemColor: kOffWhite,
         onTap: _onItemTapped,
       ),
     );

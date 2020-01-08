@@ -6,12 +6,10 @@ import 'package:flutter/material.dart';
 void main() => runApp(BMICalculator());
 
 class BMICalculator extends StatelessWidget {
-  final RavenTheme _ravenTheme = RavenTheme();
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: _ravenTheme.ravenThemeData(),
+      theme: ravenThemeData(),
       home: InputPage(),
     );
   }
