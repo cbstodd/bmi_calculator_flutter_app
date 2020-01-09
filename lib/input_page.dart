@@ -12,13 +12,20 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   static final SelectedGender _gender = SelectedGender();
+  static const double kMinHeight = 36;
+  static const double kMaxHeight = 96;
+  double height = 60;
 
-  int _selectedIndex = 0;
-  double height = 10.0;
+  static String inchesToFeet(double inches) {
+    double total = inches / 12;
+    return total.toStringAsFixed(2);
+  }
+
+  int selectedIndex = 0;
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      selectedIndex = index;
     });
   }
 
@@ -99,6 +106,29 @@ class _InputPageState extends State<InputPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text(
+                                  '${inchesToFeet(height)}',
+                                  style: kRobotoFontFamily50,
+                                ),
+                                SizedBox(width: 10.0),
+                                Text(
+                                  "ft",
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontFamily: 'Roboto',
+                                    color: kPinkPurple,
+                                  ),
+                                ),
+                                SizedBox(width: 20.0),
+                                Text(
+                                  "-Or-",
+                                  style: TextStyle(
+                                    fontSize: 30.0,
+                                    fontFamily: 'Roboto',
+                                    color: kPurple,
+                                  ),
+                                ),
+                                SizedBox(width: 20.0),
+                                Text(
                                   '${height.round()}',
                                   style: kRobotoFontFamily50,
                                 ),
@@ -115,14 +145,13 @@ class _InputPageState extends State<InputPage> {
                             ),
                             Slider(
                               value: height,
-                              min: 10.0,
-                              max: 180.0,
+                              min: kMinHeight,
+                              max: kMaxHeight,
                               activeColor: kPurple,
                               inactiveColor: kOffWhite,
                               onChanged: (double newValue) {
                                 setState(() {
                                   height = newValue.roundToDouble();
-                                  print(height);
                                 });
                               },
                             ),
@@ -181,7 +210,7 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: selectedIndex,
         selectedItemColor: kOffWhite,
         onTap: _onItemTapped,
       ),
