@@ -16,6 +16,7 @@ class _InputPageState extends State<InputPage> {
   static const double kMaxHeight = 96;
   double height = 60;
   int weight = 180;
+  int age = 18;
 
   static String inchesToFeet(double inches) {
     double total = inches / 12;
@@ -254,6 +255,84 @@ class _InputPageState extends State<InputPage> {
                       child: CustomCardContainer(
                         color: kMatteBlue,
                         borderColor: kMatteBlue,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Text(
+                                  'Age:',
+                                  style: TextStyle(
+                                    color: kLightPurple,
+                                    fontSize: 20.0,
+                                    fontFamily: 'Roboto',
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Text(
+                                  '$age',
+                                  style: kRobotoFontFamily50,
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                ClipOval(
+                                  child: Material(
+                                    color: kLightPurple, // button color
+                                    child: InkWell(
+                                      splashColor: kDanger, // inkwell color
+                                      child: SizedBox(
+                                        width: 40,
+                                        height: 40,
+                                        child: Icon(Icons.remove, color: kOffWhite),
+                                      ),
+                                      onTap: () {
+                                        setState(() {
+                                          age -= 1;
+                                        });
+                                      },
+                                      onLongPress: () {
+                                        setState(() {
+                                          age -= 20;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                ClipOval(
+                                  child: Material(
+                                    color: kLightPurple, // button color
+                                    child: InkWell(
+                                      splashColor: kSuccess, // inkwell color
+                                      child: SizedBox(
+                                        width: 40,
+                                        height: 40,
+                                        child: Icon(Icons.add, color: kOffWhite),
+                                      ),
+                                      onTap: () {
+                                        setState(() {
+                                          age += 1;
+                                        });
+                                      },
+                                      onLongPress: () {
+                                        setState(() {
+                                          age += 20;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ],
