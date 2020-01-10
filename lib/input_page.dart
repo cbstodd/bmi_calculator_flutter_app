@@ -347,23 +347,23 @@ class _InputPageState extends State<InputPage> {
         unselectedItemColor: kPurple,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.iso),
             title: Text(
-              'Home',
+              'Calculator',
               style: kRobotoFontFamily14,
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
+            icon: Icon(Icons.check_circle),
             title: Text(
-              'Business',
+              'Results',
               style: kRobotoFontFamily14,
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.help),
             title: Text(
-              'School',
+              'Help',
               style: kRobotoFontFamily14,
             ),
           ),
