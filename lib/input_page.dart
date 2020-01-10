@@ -35,7 +35,7 @@ class _InputPageState extends State<InputPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'DAMN RIGHT! CALCULATOR',
+          'BMI CALCULATOR',
           style: kRobotoFontFamily20,
         ),
       ),
@@ -208,7 +208,16 @@ class _InputPageState extends State<InputPage> {
                                         height: 40,
                                         child: Icon(Icons.remove, color: kOffWhite),
                                       ),
-                                      onTap: () {},
+                                      onTap: () {
+                                        setState(() {
+                                          weight -= 1;
+                                        });
+                                      },
+                                      onLongPress: () {
+                                        setState(() {
+                                          weight -= 20;
+                                        });
+                                      },
                                     ),
                                   ),
                                 ),
@@ -222,10 +231,19 @@ class _InputPageState extends State<InputPage> {
                                         height: 40,
                                         child: Icon(Icons.add, color: kOffWhite),
                                       ),
-                                      onTap: () {},
+                                      onTap: () {
+                                        setState(() {
+                                          weight += 1;
+                                        });
+                                      },
+                                      onLongPress: () {
+                                        setState(() {
+                                          weight += 20;
+                                        });
+                                      },
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             )
                           ],

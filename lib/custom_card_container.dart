@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class CustomCardContainer extends StatelessWidget {
+  final Color borderColor;
+  final Widget child;
+  final Color color;
+
   const CustomCardContainer({
     Key key,
     this.borderColor,
     this.child,
     @required this.color,
   }) : super(key: key);
-
-  final Color borderColor;
-  final Widget child;
-  final Color color;
 
   @override
   Widget build(BuildContext context) {
