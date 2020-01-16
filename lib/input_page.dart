@@ -11,7 +11,7 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  static final SelectedGender _gender = SelectedGender();
+  final SelectedGender _gender = SelectedGender();
   static const double kMinHeight = 36;
   static const double kMaxHeight = 96;
   double height = 60;
@@ -21,14 +21,6 @@ class _InputPageState extends State<InputPage> {
   static String inchesToFeet(double inches) {
     double total = inches / 12;
     return total.toStringAsFixed(2);
-  }
-
-  int selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
   }
 
   @override
@@ -337,40 +329,31 @@ class _InputPageState extends State<InputPage> {
                     ),
                   ],
                 ),
-              )
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/results');
+                },
+                child: Container(
+                  color: kPurple,
+                  margin: EdgeInsets.only(top: 10.0),
+                  width: double.infinity,
+                  height: 80.0,
+                  padding: EdgeInsets.only(bottom: 20.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Text(
+                        'CALCULATE',
+                        style: kRobotoFontFamily20,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: kMatteBlue,
-        unselectedItemColor: kPurple,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.iso),
-            title: Text(
-              'Calculator',
-              style: kRobotoFontFamily14,
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.check_circle),
-            title: Text(
-              'Results',
-              style: kRobotoFontFamily14,
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.help),
-            title: Text(
-              'Help',
-              style: kRobotoFontFamily14,
-            ),
-          ),
-        ],
-        currentIndex: selectedIndex,
-        selectedItemColor: kOffWhite,
-        onTap: _onItemTapped,
       ),
     );
   }
