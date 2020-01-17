@@ -1,6 +1,5 @@
 import 'package:bmi_calculator/raven_theme_data.dart';
 import 'package:bmi_calculator/input_page.dart';
-import 'package:bmi_calculator/results_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,11 +10,7 @@ class BMICalculator extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ravenThemeData(),
-      initialRoute: '/',
-      routes: {
-        '/': (BuildContext context) => InputPage(),
-        '/results': (BuildContext context) => ResultsPage(),
-      },
+      home: InputPage(),
     );
   }
 }

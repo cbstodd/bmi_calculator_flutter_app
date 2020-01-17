@@ -1,14 +1,22 @@
-import 'package:bmi_calculator/custom_card_container.dart';
+import 'package:bmi_calculator/input_page.dart';
 import 'package:bmi_calculator/raven_theme_data.dart';
-import 'package:bmi_calculator/selected_gender.dart';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ResultsPage extends StatefulWidget {
-  @override
-  _ResultsPageState createState() => _ResultsPageState();
-}
+class ResultsPage extends StatelessWidget {
+  final String titleText;
+  final Color titleColor;
+  final String details;
+  final String bmiResult;
 
-class _ResultsPageState extends State<ResultsPage> {
+  const ResultsPage({
+    @required this.titleText,
+    @required this.titleColor,
+    @required this.details,
+    @required this.bmiResult,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,31 +32,72 @@ class _ResultsPageState extends State<ResultsPage> {
           child: Column(
             children: <Widget>[
               Expanded(
-                flex: 9,
+                flex: 1,
                 child: Row(
                   children: <Widget>[
                     Expanded(
-                      child: CustomCardContainer(
-                        color: kMatteBlue,
-                        borderColor: kMatteBlue,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Text(
-                                  'Weight:',
-                                  style: TextStyle(
-                                    color: kLightPurple,
-                                    fontSize: 20.0,
-                                    fontFamily: 'Roboto',
-                                  ),
-                                ),
-                              ],
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'Your Result',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              color: kPurple,
+                              fontSize: 50.0,
+                              fontWeight: FontWeight.w900,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 8,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Text(
+                                '$titleText',
+                                style: TextStyle(
+                                  color: titleColor,
+                                  fontFamily: 'Roboto',
+                                  fontSize: 30.0,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Text(
+                                bmiResult,
+                                style: kRobotoFontFamily50,
+                              ),
+                            ],
+                          ),
+                          Wrap(
+                            children: <Widget>[
+                              Text(
+                                details,
+                                style: TextStyle(
+                                  color: kLightPurple,
+                                  fontFamily: 'Roboto',
+                                  fontSize: 20.0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -61,7 +110,9 @@ class _ResultsPageState extends State<ResultsPage> {
                     Expanded(
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, '/');
+                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            return InputPage();
+                          }));
                         },
                         child: Container(
                           padding: EdgeInsets.only(bottom: 10.0),

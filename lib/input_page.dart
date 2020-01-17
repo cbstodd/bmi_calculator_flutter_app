@@ -1,4 +1,6 @@
+import 'package:bmi_calculator/calculator.dart';
 import 'package:bmi_calculator/raven_theme_data.dart';
+import 'package:bmi_calculator/results_page.dart';
 import 'package:bmi_calculator/selected_gender.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,12 +13,13 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  final SelectedGender _gender = SelectedGender();
+  static final SelectedGender _gender = SelectedGender();
   static const double kMinHeight = 36;
   static const double kMaxHeight = 96;
-  double height = 60;
-  int weight = 180;
-  int age = 18;
+  double personHeight = 70;
+  int personWeight = 165;
+  double personAge = 21;
+  String bmiResult;
 
   static String inchesToFeet(double inches) {
     double total = inches / 12;
@@ -100,7 +103,7 @@ class _InputPageState extends State<InputPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text(
-                                  '${inchesToFeet(height)}',
+                                  '${inchesToFeet(personHeight)}',
                                   style: kRobotoFontFamily50,
                                 ),
                                 SizedBox(width: 10.0),
@@ -123,7 +126,7 @@ class _InputPageState extends State<InputPage> {
                                 ),
                                 SizedBox(width: 20.0),
                                 Text(
-                                  '${height.round()}',
+                                  '${personHeight.round()}',
                                   style: kRobotoFontFamily50,
                                 ),
                                 SizedBox(width: 10.0),
@@ -138,14 +141,14 @@ class _InputPageState extends State<InputPage> {
                               ],
                             ),
                             Slider(
-                              value: height,
+                              value: personHeight,
                               min: kMinHeight,
                               max: kMaxHeight,
                               activeColor: kPurple,
                               inactiveColor: kOffWhite,
                               onChanged: (double newValue) {
                                 setState(() {
-                                  height = newValue.roundToDouble();
+                                  personHeight = newValue.roundToDouble();
                                 });
                               },
                             ),
@@ -183,7 +186,7 @@ class _InputPageState extends State<InputPage> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 Text(
-                                  '$weight',
+                                  '$personWeight',
                                   style: kRobotoFontFamily50,
                                 ),
                               ],
@@ -203,12 +206,12 @@ class _InputPageState extends State<InputPage> {
                                       ),
                                       onTap: () {
                                         setState(() {
-                                          weight -= 1;
+                                          personWeight -= 1;
                                         });
                                       },
                                       onLongPress: () {
                                         setState(() {
-                                          weight -= 20;
+                                          personWeight -= 20;
                                         });
                                       },
                                     ),
@@ -226,12 +229,12 @@ class _InputPageState extends State<InputPage> {
                                       ),
                                       onTap: () {
                                         setState(() {
-                                          weight += 1;
+                                          personWeight += 1;
                                         });
                                       },
                                       onLongPress: () {
                                         setState(() {
-                                          weight += 20;
+                                          personWeight += 20;
                                         });
                                       },
                                     ),
@@ -267,7 +270,7 @@ class _InputPageState extends State<InputPage> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 Text(
-                                  '$age',
+                                  '$personAge',
                                   style: kRobotoFontFamily50,
                                 ),
                               ],
@@ -287,12 +290,12 @@ class _InputPageState extends State<InputPage> {
                                       ),
                                       onTap: () {
                                         setState(() {
-                                          age -= 1;
+                                          personAge -= 1;
                                         });
                                       },
                                       onLongPress: () {
                                         setState(() {
-                                          age -= 20;
+                                          personAge -= 20;
                                         });
                                       },
                                     ),
@@ -310,12 +313,12 @@ class _InputPageState extends State<InputPage> {
                                       ),
                                       onTap: () {
                                         setState(() {
-                                          age += 1;
+                                          personAge += 1;
                                         });
                                       },
                                       onLongPress: () {
                                         setState(() {
-                                          age += 20;
+                                          personAge += 20;
                                         });
                                       },
                                     ),
@@ -332,7 +335,21 @@ class _InputPageState extends State<InputPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/results');
+                  final Calculator bmi = Calculator(
+                    weight: personWeight,
+                    height: personHeight,
+                  );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ResultsPage(
+                        bmiResult: bmi.calculateBMI(),
+                        titleColor: bmi.getColor(),
+                        titleText: bmi.getTitle(),
+                        details: bmi.getDetails(),
+                      ),
+                    ),
+                  );
                 },
                 child: Container(
                   color: kPurple,

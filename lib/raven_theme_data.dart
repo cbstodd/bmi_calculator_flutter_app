@@ -24,6 +24,13 @@ const TextStyle kRobotoFontFamily50 = TextStyle(
   fontWeight: FontWeight.w900,
 );
 
+const TextStyle kRobotoFontFamily40 = TextStyle(
+  fontFamily: 'Roboto',
+  color: kOffWhite,
+  fontSize: 40.0,
+  fontWeight: FontWeight.w700,
+);
+
 const TextStyle kRobotoFontFamily30 = TextStyle(
   fontFamily: 'Roboto',
   color: kOffWhite,
