@@ -40,7 +40,7 @@ class ResultsPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'Your Result',
+                            'Your Results',
                             style: TextStyle(
                               fontFamily: 'Roboto',
                               color: kPurple,
@@ -62,18 +62,20 @@ class ResultsPage extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          Wrap(
                             children: <Widget>[
-                              Text(
-                                '$titleText',
-                                style: TextStyle(
-                                  color: titleColor,
-                                  fontFamily: 'Roboto',
-                                  fontSize: 30.0,
-                                  fontWeight: FontWeight.w700,
+                              Padding(
+                                padding: EdgeInsets.only(left: 20, right: 20.0),
+                                child: Text(
+                                  '$titleText',
+                                  style: TextStyle(
+                                    color: titleColor,
+                                    fontFamily: 'Roboto',
+                                    fontSize: 30.0,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                                 ),
-                              ),
+                              )
                             ],
                           ),
                           Row(
@@ -87,12 +89,15 @@ class ResultsPage extends StatelessWidget {
                           ),
                           Wrap(
                             children: <Widget>[
-                              Text(
-                                details,
-                                style: TextStyle(
-                                  color: kLightPurple,
-                                  fontFamily: 'Roboto',
-                                  fontSize: 20.0,
+                              Padding(
+                                padding: EdgeInsets.only(left: 40.0, right: 40.0),
+                                child: Text(
+                                  details,
+                                  style: TextStyle(
+                                    color: titleColor,
+                                    fontFamily: 'Roboto',
+                                    fontSize: 20.0,
+                                  ),
                                 ),
                               ),
                             ],

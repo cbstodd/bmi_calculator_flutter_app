@@ -19,7 +19,6 @@ class _InputPageState extends State<InputPage> {
   double personHeight = 70;
   int personWeight = 165;
   double personAge = 21;
-  String bmiResult;
 
   static String inchesToFeet(double inches) {
     double total = inches / 12;
